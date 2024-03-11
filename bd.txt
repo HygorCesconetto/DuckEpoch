@@ -1,0 +1,7 @@
+create schema dedb
+use dedb
+
+
+create table weapon(id int primary key auto_increment, `type` varchar(20) not null, `name` varchar(50) not null unique, `atk` int not null, `atks` float(1) not null, `def` int not null default 0)
+create table armour(id int primary key auto_increment, `type` varchar(20) not null, `name` varchar(50) not null unique, `atk` int not null default 0, `hp` int not null, `def` int not null)
+create table trinket(id int primary key auto_increment, `type` varchar(20) not null, `name` varchar(50) not null unique, `atk` int not null default 0, `hp` int not null default 0, `def` int not null default 0)
