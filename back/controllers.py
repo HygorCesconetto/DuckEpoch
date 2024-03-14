@@ -1,9 +1,11 @@
 from app import app
-from flask import jsonify, request , render_template
+from flask import jsonify, request , render_template, redirect
 from db import Weapom,Armour,Trinket, SyntaxException ,NotFoundException
 
 
-
+@app.get("/")
+def home():
+    return "HOME"
 
 ##-------------------------------------------------EXCEPTIONS
 @app.errorhandler(SyntaxException)
@@ -41,8 +43,8 @@ def new_weapon():
 #DELETE
 @app.delete("/weapon/<int:id>")
 def del_weapon(id):
-    Weapom().drop(id)
-    return "ok"
+        Weapom().drop(id)
+        return ("ok",200)
 
 #UPDATE
 @app.route("/weapon", methods =["PUT","PATCH"])
