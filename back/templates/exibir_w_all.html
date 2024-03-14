@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Weapons</title>
+    <link rel="stylesheet" href="/static/tabela_exibir.css">
+</head>
+<body>
+    <header>
+        <h1>Consulta - Todas Armas</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TIPO</th>
+                    <th>NOME</th>
+                    <th>ATAQUE</th>
+                    <th>VEL. ATAQUE</th>
+                    <th>DEF</th>
+                </tr>
+                {%for weapon in data%}
+                <tr>
+                    {%for key in weapon.keys()%}
+                    <td>{{weapon[key]}}</td>
+                    {%endfor%}
+                </tr>
+                {%endfor%}
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+</body>
+</html>

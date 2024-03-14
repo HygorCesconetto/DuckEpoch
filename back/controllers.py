@@ -1,5 +1,5 @@
 from app import app
-from flask import jsonify, request
+from flask import jsonify, request , render_template
 from db import Weapom,Armour,Trinket, SyntaxException ,NotFoundException
 
 
@@ -19,21 +19,24 @@ def syntax_exception(error):
 #READ
 @app.get("/weapon")
 def weapon_getAll():
-    return jsonify(Weapom().getAll())
+    data=Weapom().getAll()
+    return render_template("exibir_w_all.html",data=data)
 
 @app.get("/weapon/<int:id>")
 def weapon_getByID(id):
-    return jsonify(Weapom().getByID(id))
+    data=dict(Weapom().getByID(id))
+    return render_template("exibir_w_one.html", data = data)
 
 @app.get("/weapon/<prop>")
 def weapon_getByType(prop):
-    return jsonify(Weapom().getByProp(prop))
+    data = Weapom().getByProp(prop)
+    return render_template("exibir_w_prop.html", data=data)
 
 #CREATE
 @app.post("/weapon")
 def new_weapon():
     Weapom().new(request.json)
-    return "ok"
+    return jsonify({"message":"ok"})
 
 #DELETE
 @app.delete("/weapon/<int:id>")
@@ -67,7 +70,8 @@ def armour_getByType(prop):
 @app.post("/armour")
 def new_armour():
     Armour().new(request.json)
-    return "ok"
+    return jsonify({"message":"ok"})
+
 
 #DELETE
 @app.delete("/armour/<int:id>")
@@ -101,7 +105,7 @@ def trinket_getByType(prop):
 @app.post("/trinket")
 def new_trinket():
     Trinket().new(request.json)
-    return "ok"
+    return jsonify({"message":"ok"})
 
 #DELETE
 @app.delete("/trinket/<int:id>")

@@ -1,0 +1,31 @@
+<section class="form-section">
+    <div class="div-title">
+        <h1>CADASTRO ITENS</h1>
+    </div>
+    <form class="form-item" [formGroup]="cadastroform">
+        <div class="form-row1">
+            <input id="base" name="base" type="text" placeholder="Nome" required formControlName = "nome">
+            <input id="type" name="type" type="text" placeholder="Tipo" required formControlName = "tipo">
+            <select class="sel-item" name="item-type" id="item-type" required formControlName = "itipo">
+                <option value="armour" selected>Armadura</option>
+                <option value="weapon" >Arma</option>
+                <option value="trinket" >Acessórios</option>
+            </select>
+        </div>
+        <div class="form-row2">
+            <input id="atk" name="atk" type="number" placeholder="Ataque" formControlName = "ataque">
+            <input id="atks" name="atks" type="number" placeholder="Velocidade de Ataque" formControlName = "aspeed">
+            <input id="def" name="def" type="number" placeholder="Defesa" formControlName = "defesa">
+            <input id="hp" name="hp" type="number" placeholder="Vida" formControlName = "vida">
+        </div>
+        <div class="btn-div">
+
+            <app-btn-submit
+                btn-text="Cadastrar"
+                (submit)="onSubmit()"
+                [disabled]="!cadastroform.valid"
+                [loading]="loading()"
+             ></app-btn-submit>
+        </div>
+    </form>
+</section>

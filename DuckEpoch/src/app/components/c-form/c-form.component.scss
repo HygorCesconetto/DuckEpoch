@@ -1,0 +1,41 @@
+.form-section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.div-title{
+    display: block;
+    margin: 50px 0 50px 0;
+}
+.form-item{
+    padding: 30px;
+    border: 1px solid lightgray ;
+    border-radius: 7px;
+    display: flexbox;
+    text-align: start;
+}
+.form-row1{
+    margin-bottom: 20px;
+}
+input{
+    font-size: large;
+    text-align: center;
+    height: 50px;
+    margin: 8px;
+}
+select{
+    font-size: large;
+    text-align: center;
+    height: 50px;
+    width: 470px;
+    color: black;
+    background-color: rgb(226, 241, 247);
+}
+input::placeholder{
+    text-align: center;
+}
+.btn-div{
+    margin-top: 50px;
+    text-align: center;
+}
