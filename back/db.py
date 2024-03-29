@@ -326,3 +326,61 @@ class Trinket():
 			crs.close()
 		except NotFoundException: raise NotFoundException
 		except Exception:raise SyntaxException
+
+#---------------------------------------------------------------------------------------------TRINKET
+class Account():
+	def getAll(self):
+		try:
+			crs = db.cursor(dictionary=True)
+			query="""SELECT * FROM account;"""
+			crs.execute(query)
+			results = crs.fetchall()
+			crs.close()
+			return results
+		except: raise SyntaxException
+
+	def getByID(self, id:int):
+		try:
+			crs = db.cursor(dictionary=True)
+			crs.execute(f"""SELECT * FROM account where `id` = {id};""")
+			result = crs.fetchone()
+			crs.close()
+
+			if result == None : raise NotFoundException
+			return result
+		except NotFoundException: raise NotFoundException
+		except Exception: raise SyntaxException
+
+	def new(self, data:dict):
+		try:	
+			crs = db.cursor()
+			query="""INSERT INTO account(`usuario`, `email`, `senha`) VALUES('%s','%s','%s');""" %(data["usuario"], data["email"], data["senha"])
+			crs.execute(query)
+			db.commit()
+			crs.close()
+		except Exception:raise SyntaxException
+	
+	def drop(self, id:int):
+		try:
+			Account().getByID(id)
+			crs = db.cursor()
+			crs.execute("""DELETE FROM account WHERE `id` = %s;"""%id)
+			db.commit()
+			crs.close()
+		except NotFoundException : raise NotFoundException
+		except Exception: raise SyntaxException
+		
+	def full_update(self, data:dict):
+		try:
+			Account().getByID(data["id"])
+			if len(data) != 4: raise SyntaxError
+			crs = db.cursor()
+			crs.execute(f"""UPDATE account SET 
+			   `usuario`= '{data["usuario"]}', 
+			   `email`= '{data["email"]}', 
+			   `senha`= '{data["senha"]}'
+			   WHERE `id` = {data["id"]};""")
+			db.commit()
+			crs.close()
+		except NotFoundException: raise NotFoundException
+		except Exception:raise SyntaxException 

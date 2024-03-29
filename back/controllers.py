@@ -1,6 +1,6 @@
 from app import app
-from flask import jsonify, request , render_template, redirect
-from db import Weapom,Armour,Trinket, SyntaxException ,NotFoundException
+from flask import jsonify, request , render_template
+from db import Weapom,Armour,Trinket,Account, SyntaxException ,NotFoundException
 
 
 @app.get("/")
@@ -120,4 +120,33 @@ def del_trinket(id):
 def update_trinket():
     if request.method == "PUT": Trinket().full_update(request.json)
     elif request.method == "PATCH": Trinket().parcial_update(request.json)
+    return "ok"
+
+
+## CRUD -------------------------------------------- ACCOUNTS
+#READ
+@app.get("/account")
+def account_getAll():
+    return jsonify(Account().getAll())
+
+@app.get("/account/<int:id>")
+def account_getByID(id):
+    return jsonify(Account().getByID(id))
+
+#CREATE
+@app.post("/account")
+def new_account():
+    Account().new(request.json)
+    return jsonify({"message":"ok"})
+
+#DELETE
+@app.delete("/account/<int:id>")
+def del_account(id):
+    Account().drop(id)
+    return "ok"
+
+#UPDATE
+@app.put("/account")
+def update_account():
+    Account().full_update(request.json)
     return "ok"
