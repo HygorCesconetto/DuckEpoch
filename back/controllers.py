@@ -22,17 +22,17 @@ def syntax_exception(error):
 @app.get("/weapon")
 def weapon_getAll():
     data=Weapom().getAll()
-    return render_template("exibir_w_all.html",data=data)
+    return render_template("weapon_all.html",data=data)
 
 @app.get("/weapon/<int:id>")
 def weapon_getByID(id):
     data=dict(Weapom().getByID(id))
-    return render_template("exibir_w_one.html", data = data)
+    return render_template("weapon_id.html", data = data)
 
 @app.get("/weapon/<prop>")
 def weapon_getByType(prop):
     data = Weapom().getByProp(prop)
-    return render_template("exibir_w_prop.html", data=data)
+    return render_template("weapon_prop.html", data=data)
 
 #CREATE
 @app.post("/weapon")

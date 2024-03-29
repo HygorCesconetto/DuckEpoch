@@ -4,14 +4,17 @@ class SyntaxException(Exception):pass
 class NotFoundException(Exception):pass
 
 
-db = con.connect(user="root",
-                 password="2591439",
-                 database="dedb")
+class DBCon ():
+	def up ():
+		return con.connect(user="root",password="2591439",database="dedb")
+		
+
 
 #---------------------------------------------------------------------------------------------WEAPON
 class Weapom():
 	def getAll(self):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			query="""SELECT * FROM weapon;"""
 			crs.execute(query)
@@ -22,6 +25,7 @@ class Weapom():
 
 	def getByID(self, id:int):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			crs.execute(f"""SELECT * FROM weapon where `id` = {id};""")
 			result = crs.fetchone()
@@ -34,6 +38,7 @@ class Weapom():
 
 	def getByProp(self, prop:str):
 		try:
+			db = DBCon.up()
 			crs= db.cursor(dictionary=True)
 			crs.execute("select `type` from  weapon group by `type`;")
 			types=[x["type"] for x in crs.fetchall()]
@@ -62,6 +67,7 @@ class Weapom():
 					case "type": values+="'%s',"%data[key].lower()
 					case _: values+="%s,"%data[key]
 				
+			db = DBCon.up()
 			crs = db.cursor()
 			query="""INSERT INTO weapon(%s) VALUES(%s);""" %(keys[:-1],values[:-1])
 			crs.execute(query)
@@ -72,6 +78,7 @@ class Weapom():
 	def drop(self, id:int):
 		try:
 			Weapom().getByID(id)
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute("""DELETE FROM weapon WHERE `id` = %s;"""%id)
 			db.commit()
@@ -83,6 +90,7 @@ class Weapom():
 		try:
 			Weapom().getByID(data["id"])
 			if len(data) != 6: raise SyntaxError
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute(f"""UPDATE weapon SET 
 			   `type`='{data["type"].lower()}', 
@@ -107,6 +115,7 @@ class Weapom():
 					case "type": sets += f"'{data[key].lower()}',"
 					case _: sets += f"{data[key]},"
 
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute(f"""UPDATE weapon SET {sets[:-1]} WHERE `id`={data["id"]} ;""")
 			db.commit()
@@ -119,6 +128,7 @@ class Weapom():
 class Armour():
 	def getAll(self):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			query="""SELECT * FROM armour;"""
 			crs.execute(query)
@@ -129,6 +139,7 @@ class Armour():
 
 	def getByID(self, id:int):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			crs.execute(f"""SELECT * FROM armour where `id` = {id};""")
 			result = crs.fetchone()
@@ -141,6 +152,7 @@ class Armour():
 
 	def getByProp(self, prop:str):
 		try:
+			db = DBCon.up()
 			crs= db.cursor(dictionary=True)
 			crs.execute("select `type` from  armour group by `type`;")
 			types=[x["type"] for x in crs.fetchall()]
@@ -169,6 +181,7 @@ class Armour():
 					case "type": values+="'%s',"%data[key].lower()
 					case _: values+="%s,"%data[key]
 				
+			db = DBCon.up()
 			crs = db.cursor()
 			query="""INSERT INTO armour(%s) VALUES(%s);""" %(keys[:-1],values[:-1])
 			crs.execute(query)
@@ -178,7 +191,8 @@ class Armour():
 	
 	def drop(self, id:int):
 		try:
-			Weapom().getByID(id)
+			Armour().getByID(id)
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute("""DELETE FROM armour WHERE `id` = %s;"""%id)
 			db.commit()
@@ -188,7 +202,8 @@ class Armour():
 		
 	def full_update(self, data:dict):
 		try:
-			Weapom().getByID(data["id"])
+			db = DBCon.up()
+			Armour().getByID(data["id"])
 			if len(data) != 6: raise SyntaxError
 			crs = db.cursor()
 			crs.execute(f"""UPDATE armour SET 
@@ -205,7 +220,7 @@ class Armour():
 
 	def parcial_update(self, data:dict):
 		try:
-			Weapom().getByID(data["id"])
+			Armour().getByID(data["id"])
 			sets = ""
 			for key in data.keys():
 				sets+= f"`{key}`="
@@ -214,6 +229,7 @@ class Armour():
 					case "type": sets += f"'{data[key].lower()}',"
 					case _: sets += f"{data[key]},"
 
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute(f"""UPDATE armour SET {sets[:-1]} WHERE `id`={data["id"]} ;""")
 			db.commit()
@@ -225,6 +241,7 @@ class Armour():
 class Trinket():
 	def getAll(self):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			query="""SELECT * FROM trinket;"""
 			crs.execute(query)
@@ -235,6 +252,7 @@ class Trinket():
 
 	def getByID(self, id:int):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			crs.execute(f"""SELECT * FROM trinket where `id` = {id};""")
 			result = crs.fetchone()
@@ -247,6 +265,7 @@ class Trinket():
 
 	def getByProp(self, prop:str):
 		try:
+			db = DBCon.up()
 			crs= db.cursor(dictionary=True)
 			crs.execute("select `type` from  trinket group by `type`;")
 			types=[x["type"] for x in crs.fetchall()]
@@ -274,7 +293,8 @@ class Trinket():
 					case "name": values+="'%s',"%data[key].lower()
 					case "type": values+="'%s',"%data[key].lower()
 					case _: values+="%s,"%data[key]
-				
+
+			db = DBCon.up()	
 			crs = db.cursor()
 			query="""INSERT INTO trinket(%s) VALUES(%s);""" %(keys[:-1],values[:-1])
 			crs.execute(query)
@@ -284,7 +304,8 @@ class Trinket():
 	
 	def drop(self, id:int):
 		try:
-			Weapom().getByID(id)
+			Trinket().getByID(id)
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute("""DELETE FROM trinket WHERE `id` = %s;"""%id)
 			db.commit()
@@ -294,7 +315,8 @@ class Trinket():
 		
 	def full_update(self, data:dict):
 		try:
-			Weapom().getByID(data["id"])
+			Trinket().getByID(data["id"])
+			db = DBCon.up()
 			if len(data) != 6: raise SyntaxError
 			crs = db.cursor()
 			crs.execute(f"""UPDATE trinket SET 
@@ -311,7 +333,8 @@ class Trinket():
 
 	def parcial_update(self, data:dict):
 		try:
-			Weapom().getByID(data["id"])
+			db = DBCon.up()
+			Trinket().getByID(data["id"])
 			sets = ""
 			for key in data.keys():
 				sets+= f"`{key}`="
@@ -331,6 +354,7 @@ class Trinket():
 class Account():
 	def getAll(self):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			query="""SELECT * FROM account;"""
 			crs.execute(query)
@@ -341,6 +365,7 @@ class Account():
 
 	def getByID(self, id:int):
 		try:
+			db = DBCon.up()
 			crs = db.cursor(dictionary=True)
 			crs.execute(f"""SELECT * FROM account where `id` = {id};""")
 			result = crs.fetchone()
@@ -352,7 +377,8 @@ class Account():
 		except Exception: raise SyntaxException
 
 	def new(self, data:dict):
-		try:	
+		try:
+			db = DBCon.up()	
 			crs = db.cursor()
 			query="""INSERT INTO account(`usuario`, `email`, `senha`) VALUES('%s','%s','%s');""" %(data["usuario"], data["email"], data["senha"])
 			crs.execute(query)
@@ -363,6 +389,7 @@ class Account():
 	def drop(self, id:int):
 		try:
 			Account().getByID(id)
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute("""DELETE FROM account WHERE `id` = %s;"""%id)
 			db.commit()
@@ -374,6 +401,7 @@ class Account():
 		try:
 			Account().getByID(data["id"])
 			if len(data) != 4: raise SyntaxError
+			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute(f"""UPDATE account SET 
 			   `usuario`= '{data["usuario"]}', 
