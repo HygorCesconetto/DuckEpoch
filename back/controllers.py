@@ -1,6 +1,6 @@
 from app import app
-from flask import jsonify, request , render_template
-from db import Weapom,Armour,Trinket,Account, SyntaxException ,NotFoundException
+from flask import jsonify, request , render_template, redirect, url_for
+from db import Weapom,Armour,Trinket,Account, SyntaxException ,NotFoundException, UserAlreadyExistException
 
 
 @app.get("/")
@@ -8,13 +8,17 @@ def home():
     return "HOME"
 
 ##-------------------------------------------------EXCEPTIONS
+@app.errorhandler(UserAlreadyExistException)
+def syntax_exception(error):
+    return 'Usuário já cadastrado, tente novamente.', 409
+
 @app.errorhandler(SyntaxException)
 def syntax_exception(error):
     return 'Sintaxe incorreta, tente novamente.', 400
 
 @app.errorhandler(NotFoundException)
 def syntax_exception(error):
-    return 'Item não encontrado.', 404
+    return 'Não encontrado.', 404
 
 
 ## CRUD --------------------------------------------WEAPON
@@ -138,16 +142,16 @@ def account_getByID(id):
 @app.post("/account")
 def new_account():
     Account().new(request.json)
-    return jsonify({"message":"ok"})
+    return "Conta cadastrada com Sucesso.", 200
 
 #DELETE
 @app.delete("/account/<int:id>")
 def del_account(id):
     Account().drop(id)
-    return "ok"
+    return "Usuario deletado."
 
 #UPDATE
 @app.put("/account")
 def update_account():
     Account().full_update(request.json)
-    return "ok"
+    return "Dados Alterados com Sucesso.", 200

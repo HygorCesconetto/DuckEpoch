@@ -107,10 +107,5 @@ main {
     #delete {
       background-color: rgb(250, 134, 134);
     }
-
-    #confirm {
-      background-color: rgb(211, 211, 211);
-      width: 200px;
-    }
   }
 }

@@ -2,6 +2,7 @@ import mysql.connector as con
 
 class SyntaxException(Exception):pass
 class NotFoundException(Exception):pass
+class UserAlreadyExistException(Exception):pass
 
 
 class DBCon ():
@@ -378,12 +379,21 @@ class Account():
 
 	def new(self, data:dict):
 		try:
+			#teste para ususario ja existente
+			db = DBCon.up()
+			crs = db.cursor(dictionary=True)
+			crs.execute(f"""SELECT * FROM account where `usuario` = "{data["usuario"]}";""")
+			result = crs.fetchone()
+			crs.close()
+			if result != None : raise UserAlreadyExistException
+
 			db = DBCon.up()	
 			crs = db.cursor()
 			query="""INSERT INTO account(`usuario`, `email`, `senha`) VALUES('%s','%s','%s');""" %(data["usuario"], data["email"], data["senha"])
 			crs.execute(query)
 			db.commit()
 			crs.close()
+		except UserAlreadyExistException: raise UserAlreadyExistException
 		except Exception:raise SyntaxException
 	
 	def drop(self, id:int):
