@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.table-container {
+  padding: 5px;
+  flex: 4;
+  text-align: center;
+  
+  .account-table {
+    width: 80%;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    border-collapse: collapse;
+
+  
+    th,td {
+      border: 1px solid black;
+      padding: 5px;
+      color: rgb(34, 34, 34);
+    }
+  }
+  tr:nth-child(even){
+    background-color: rgb(252, 250, 222);
+}
+}
+
+
+
+
+
+
+
+
+
+
+.action-container {
+  flex: 2;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  padding: 30px;
+  border-radius: 20px;
+  height: 130px;
+  justify-content:space-evenly;
+
+  position:sticky;
+  top: 10%;
+
+  .input-container{
+
+    input{
+      margin: 4px;
+      display: block;
+      padding: 5px;
+      text-align: center;
+    }
+    input::placeholder{
+      text-align: center;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .button-container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    button {
+      margin: 5px;
+      font-size: 0.8rem;
+      border: 1px solid rgb(128, 128, 128);
+      border-radius: 20px;
+      padding: 6px;
+      opacity: 0.8;
+      cursor: pointer;
+      
+    }
+
+    button:hover {
+      opacity: 1;
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.452);
+      border-color: black;
+    }
+
+    #add {
+      background-color: greenyellow;
+    }
+
+    #edit {
+      background-color: rgb(211, 211, 211);
+    }
+
+    #delete {
+      background-color: rgb(250, 134, 134);
+    }
+
+    #confirm {
+      background-color: rgb(211, 211, 211);
+      width: 200px;
+    }
+  }
+}

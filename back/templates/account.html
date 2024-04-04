@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/account.css">
+    <title>Account</title>
+</head>
+<body>
+    <main>
+        <div class="table-container">
+            <table class="account-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>USUARIO</th>
+                        <th>EMAIL</th>
+                        <th>SENHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data%}
+                        <tr>
+                            <td>{{item["id"]}}</td>
+                            <td>{{item["usuario"]}}</td>
+                            <td>{{item["email"]}}</td>
+                            <td>{{item["senha"]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="action-container">
+            <div class="input-container">
+                <input type="number"  id="id" placeholder="ID">
+                <input type="text"  id="usuario" placeholder="USUARIO">
+                <input type="email"  id="email" placeholder="EMAIL">
+                <input type="password"  id="senha" placeholder="SENHA">
+            </div>
+            <div class="button-container">
+                <div>
+                    <button id="add">NOVO</button>
+                    <button id="edit">EDITAR</button>
+                    <button id="delete">DELETAR</button>
+                </div>
+                <button id="confirm">CONFIRMA</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -127,7 +127,8 @@ def update_trinket():
 #READ
 @app.get("/account")
 def account_getAll():
-    return jsonify(Account().getAll())
+    data = Account().getAll()
+    return render_template("account.html", data=data)
 
 @app.get("/account/<int:id>")
 def account_getByID(id):
