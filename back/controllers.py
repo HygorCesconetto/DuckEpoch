@@ -1,6 +1,6 @@
 from app import app
 from flask import jsonify, request , render_template, redirect, url_for
-from db import Weapom,Armour,Trinket,Account, SyntaxException ,NotFoundException, UserAlreadyExistException
+from db import Weapom,Armour,Trinket,Account,Build,     SyntaxException ,NotFoundException, UserAlreadyExistException
 
 
 @app.get("/")
@@ -37,6 +37,11 @@ def weapon_getByID(id):
 def weapon_getByType(prop):
     data = Weapom().getByProp(prop)
     return render_template("weapon_prop.html", data=data)
+
+@app.get("/weapon_api")
+def weapon_getApi():
+    data=Weapom().getAll()
+    return jsonify(data)
 
 #CREATE
 @app.post("/weapon")
@@ -155,3 +160,42 @@ def del_account(id):
 def update_account():
     Account().full_update(request.json)
     return "Dados Alterados com Sucesso.", 200
+
+## CRUD -------------------------------------------- BUILDS
+#READ
+@app.get("/build")
+def build_getAll():
+    builds = Build().get_all()
+    itens = {
+        "helmet":Armour().getByProp("helmet"),
+        "body":Armour().getByProp("body"),
+        "gloves":Armour().getByProp("gloves"),
+        "boots":Armour().getByProp("boots"),
+        "main_hand":Weapom().getAll(),
+        "off_hand":Weapom().getAll(),
+        "amulet":Trinket().getByProp("amulet"),
+        "ring":Trinket().getByProp("ring"),
+        "belt":Trinket().getByProp("belt")
+             }
+    return render_template("build.html", builds = builds, itens = itens)
+
+@app.get("/build_api")
+def build_getApi():
+    build = Build().get_all()
+    return jsonify(build)
+
+
+@app.delete("/build/<int:id>")
+def delete_build(id):
+    Build().drop(id)
+    return "Build deletada.", 200
+
+@app.post("/build")
+def new_build():
+    Build().new(request.json)
+    return "Build cadastrada.", 200
+
+@app.put("/build")
+def update_build():
+    Build().full_update(request.json)
+    return "Build alterada.", 200

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build</title>
+  </head>
+  <body>
+    <main>
+      <div class="build-manager">
+        <div class="button-container">
+          <button id="add">ADD</button>
+          <button id="edit">EDIT</button>
+          <button id="delete">DELETE</button>
+        </div>
+
+        <div class="build-itens-container">
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="helmet" />
+            <select name="helmet" id="helmet">
+                {% for helmet in itens["helmet"]%}
+                <option value="{{helmet['id']}}">{{helmet['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="body-armor" />
+            <select name="body-armor" id="body-armor">
+                {% for body in itens["body"]%}
+                <option value="{{body['id']}}">{{body['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="gloves" />
+            <select name="gloves" id="gloves">
+                {% for gloves in itens["gloves"]%}
+                <option value="{{gloves['id']}}">{{gloves['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="boots" />
+            <select name="boots" id="boots">
+                {% for boots in itens["boots"]%}
+                <option value="{{boots['id']}}">{{boots['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="main-hand" />
+            <select name="main-hand" id="main-hand">
+                {% for main_hand in itens["main_hand"]%}
+                <option value="{{main_hand['id']}}">{{main_hand['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="off-hand" />
+            <select name="off-hand" id="off-hand">
+                {% for off_hand in itens["off_hand"]%}
+                <option value="{{off_hand['id']}}">{{off_hand['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="amulet" />
+            <select name="amulet" id="amulet">
+                {% for amulet in itens["amulet"]%}
+                <option value="{{amulet['id']}}">{{amulet['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="ring" />
+            <select name="ring" id="ring">
+                {% for ring in itens["ring"]%}
+                <option value="{{ring['id']}}">{{ring['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-container">
+            <img src="../static/item-img.png" alt="belt" />
+            <select name="belt" id="belt">
+                {% for belt in itens["belt"]%}
+                <option value="{{belt['id']}}">{{belt['name']}}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="build-list">
+        {% for build in builds %}
+        <option value="{{build['id']}}">{{build["name"]}}</option>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>

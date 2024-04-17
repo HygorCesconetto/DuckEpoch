@@ -351,7 +351,7 @@ class Trinket():
 		except NotFoundException: raise NotFoundException
 		except Exception:raise SyntaxException
 
-#---------------------------------------------------------------------------------------------TRINKET
+#---------------------------------------------------------------------------------------------ACCOUNT
 class Account():
 	def getAll(self):
 		try:
@@ -418,6 +418,81 @@ class Account():
 			   `email`= '{data["email"]}', 
 			   `senha`= '{data["senha"]}'
 			   WHERE `id` = {data["id"]};""")
+			db.commit()
+			crs.close()
+		except NotFoundException: raise NotFoundException
+		except Exception:raise SyntaxException 
+
+#---------------------------------------------------------------------------------------------BUILD
+class Build():
+	def get_all(self):
+		try:
+			db = DBCon.up()
+			crs = db.cursor(dictionary=True)
+			query = """SELECT * FROM build;"""
+			crs.execute(query)
+			result = crs.fetchall()
+			crs.close()
+			return result
+		except: raise SyntaxError
+
+	def get_byID(self,id:int):
+		try:
+			db = DBCon.up()
+			crs = db.cursor(dictionary=True)
+			query = """SELECT * FROM build WHERE `id`=%s ;""" %id
+			crs.execute(query)
+			result = crs.fetchone()
+			crs.close()
+
+			if result == None: raise NotFoundException
+			return result
+		except NotFoundException : raise NotFoundException
+		except Exception : raise SyntaxError
+
+	def new(self, data:dict):
+		try:
+			db = DBCon.up()	
+			crs = db.cursor()
+			query = f"""INSERT INTO build(`name`, `helmet`, `body`, `gloves`, `boots`, `main_hand`, `off_hand`, `amulet`, `ring`, `belt`) VALUES(
+				'{data["name"]}', {data["helmet"]}, {data["body"]}, {data["gloves"]}, {data["boots"]}, {data["main_hand"]},
+				 {data["off_hand"]}, {data["amulet"]}, {data["ring"]}, {data["belt"]}
+				 );""" 
+			crs.execute(query)
+			db.commit()
+			crs.close()
+		except Exception:raise SyntaxException
+
+	def drop(self, id:int):
+		try:
+			Build().get_byID(id)
+			db = DBCon.up()
+			crs = db.cursor()
+			crs.execute("""DELETE FROM build WHERE `id` = %s;"""%id)
+			db.commit()
+			crs.close()
+		except NotFoundException : raise NotFoundException
+		except Exception: raise SyntaxException
+
+	def full_update(self, data:dict):
+		try:
+			Build().get_byID(data["id"])
+			if len(data) != 11: raise SyntaxError
+			db = DBCon.up()
+			crs = db.cursor()
+			query = f"""UPDATE build SET 
+			   `name`= '{data["name"]}', 
+			   `helmet`= {data["helmet"]}, 
+			   `body`= {data["body"]},
+			   `gloves`= {data["gloves"]},
+			   `boots`= {data["boots"]},
+			   `main_hand`= {data["main_hand"]},
+			   `off_hand`= {data["off_hand"]},
+			   `amulet`= {data["amulet"]},
+			   `ring`= {data["ring"]},
+			   `belt`= {data["belt"]}
+			   WHERE `id` = {data["id"]};"""
+			crs.execute(query)
 			db.commit()
 			crs.close()
 		except NotFoundException: raise NotFoundException
