@@ -1,17 +1,97 @@
 main{
- background-color:wheat;
  display: flex;
- justify-content: space-around;   
+ justify-content: space-around; 
+ align-items: center;
+ height: 800px;  
 }
 
 .itens-container{
-    background-color: lightgreen;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(237, 255, 255);
+    border: 1.5px solid black ;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px rgb(105, 105, 105);
+    height: 600px;
+
 
     .item-container{
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        width: 700px;
     }
 }
 
 .editor-container{
-    background-color: lightcyan;
+    border: 1.5px solid black ;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px rgb(105, 105, 105);
+    
+    padding: 30px;
+    background-color: rgb(237, 255, 255);
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .build-new{
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+    }
+    
+    .editor{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+        height: 250px;
+        width: 500px;
+
+        .build-name{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            label{
+                padding: 15px;
+            }
+        }
+
+        .button-container{
+            margin: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+    }
+
+    
+}
+
+select,input{
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+label{
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.1rem;
+}
+
+button{
+    cursor: pointer;
+    height: 35px;
+    width: 70px;
+}
+#add{
+    margin-right: 45px;
 }

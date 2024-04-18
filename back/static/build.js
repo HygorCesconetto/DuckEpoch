@@ -1,20 +1,5 @@
 // LOAD PAGE
-$('#build-id').click(function(){
 
-    const id = $("#build-id").val();
-
-    $.getJSON(`http://127.0.0.1:5000/build_api/${id}`, function(data){
-        document.getElementById("helmet").value = data["helmet"];
-        document.getElementById("body-armor").value = data["body"];
-        document.getElementById("gloves").value = data["gloves"];
-        document.getElementById("boots").value = data["boots"];
-        document.getElementById("main-hand").value = data["main_hand"];
-        document.getElementById("off-hand").value = data["off_hand"];
-        document.getElementById("amulet").value = data["amulet"];
-        document.getElementById("ring").value = data["ring"];
-        document.getElementById("belt").value = data["belt"];
-    })
-});
 
 
 
@@ -143,4 +128,21 @@ $('#build-id').on('change', function(e){
         document.getElementById("ring").value = data["ring"];
         document.getElementById("belt").value = data["belt"];
     })
+});
+
+$('#build-id').click(function(){
+
+    if (document.getElementById('build-id').options.length === 1)
+    {const id = $("#build-id").val();
+    $.getJSON(`http://127.0.0.1:5000/build_api/${id}`, function(data){
+        document.getElementById("helmet").value = data["helmet"];
+        document.getElementById("body-armor").value = data["body"];
+        document.getElementById("gloves").value = data["gloves"];
+        document.getElementById("boots").value = data["boots"];
+        document.getElementById("main-hand").value = data["main_hand"];
+        document.getElementById("off-hand").value = data["off_hand"];
+        document.getElementById("amulet").value = data["amulet"];
+        document.getElementById("ring").value = data["ring"];
+        document.getElementById("belt").value = data["belt"];
+    })};
 });

@@ -100,26 +100,30 @@
       </div>
 
       <div class="editor-container">
+
+        
         <div class="build-new">
           <label for="buld-name"></label>
           <input type="text" name="build-name" id="build-name" autofocus>
           <button id="add">ADD</button>
         </div>
 
-        <div class="build-list">
-          <label for=""></label>
-          <select name="build-id" id="build-id">
-            {% for build in builds %}
-            <option value="{{build['id']}}">{{build["name"]}}</option>
-            {% endfor %}
-          </select>
+        <div class="editor">
+          <div class="build-name">
+            <label for="build-id">Builds</label>
+            <select name="build-id" id="build-id">
+              {% for build in builds %}
+              <option value="{{build['id']}}">{{build["name"]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="button-container">
+            <button id="edit">EDIT</button>
+            <button id="delete">DELETE</button>
+            <button id="clear">CLEAR</button>
+          </div>
         </div>
 
-        <div class="button-container">
-          <button id="edit">EDIT</button>
-          <button id="delete">DELETE</button>
-          <button id="clear">CLEAR</button>
-        </div>
       </div>
 
     </main>
