@@ -7,7 +7,9 @@ class UserAlreadyExistException(Exception):pass
 
 class DBCon ():
 	def up ():
-		return con.connect(user="root",password="2591439",database="dedb")
+		try:
+			return con.connect(user="root",password="2591439",database="dedb")
+		except: return SyntaxException
 		
 
 
@@ -22,7 +24,7 @@ class Weapom():
 			results = crs.fetchall()
 			crs.close()
 			return results
-		except: raise SyntaxException
+		except Exception: raise SyntaxException
 
 	def getByID(self, id:int):
 		try:
@@ -434,7 +436,7 @@ class Build():
 			result = crs.fetchall()
 			crs.close()
 			return result
-		except: raise SyntaxError
+		except: raise SyntaxException
 
 	def get_byID(self,id:int):
 		try:
@@ -451,6 +453,7 @@ class Build():
 		except Exception : raise SyntaxError
 
 	def new(self, data:dict):
+		print(data)
 		try:
 			db = DBCon.up()	
 			crs = db.cursor()

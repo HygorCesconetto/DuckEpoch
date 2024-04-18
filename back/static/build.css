@@ -1,0 +1,17 @@
+main{
+ background-color:wheat;
+ display: flex;
+ justify-content: space-around;   
+}
+
+.itens-container{
+    background-color: lightgreen;
+    justify-content: space-between;
+
+    .item-container{
+    }
+}
+
+.editor-container{
+    background-color: lightcyan;
+}

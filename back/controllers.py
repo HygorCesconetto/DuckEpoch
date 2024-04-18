@@ -184,6 +184,10 @@ def build_getApi():
     build = Build().get_all()
     return jsonify(build)
 
+@app.route("/build_api/<int:id>", methods=["GET"])
+def build_getApi_Id(id):
+    build= Build().get_byID(id)
+    return jsonify(build)
 
 @app.delete("/build/<int:id>")
 def delete_build(id):
