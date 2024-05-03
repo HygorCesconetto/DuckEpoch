@@ -32,9 +32,9 @@ create table monster(
 
 create table account(
     id int primary key auto_increment,
-    usuario varchar(50) not null unique,
+    name varchar(50) not null unique,
     email varchar(100) not null unique,
-    senha varchar(50) not null
+    pword varchar(50) not null
     );
 
 create table build(

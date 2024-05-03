@@ -1,6 +1,6 @@
 from app import app
 from flask import jsonify, request , render_template, redirect, url_for
-from db import Weapom,Armour,Trinket,Account,Build, SyntaxException ,NotFoundException, UserAlreadyExistException
+from db import Weapom,Armour,Trinket,Account,Build, SyntaxException ,NotFoundException, ItemAlreadyExistException,DBConnectionFail
 
 
 @app.get("/")
@@ -8,17 +8,21 @@ def home():
     return "HOME"
 
 ##-------------------------------------------------EXCEPTIONS
-@app.errorhandler(UserAlreadyExistException)
+@app.errorhandler(ItemAlreadyExistException)
 def syntax_exception(error):
-    return 'Usuário já cadastrado, tente novamente.', 409
+    return 'Nome já cadastrado, tente novamente.', 409
 
 @app.errorhandler(SyntaxException)
 def syntax_exception(error):
-    return 'Sintaxe incorreta, tente novamente.', 400
+    return 'Dados incorretos, tente novamente.', 400
 
 @app.errorhandler(NotFoundException)
 def syntax_exception(error):
-    return 'Não encontrado.', 404
+    return 'Usuário não encontrado.', 404
+
+@app.errorhandler(DBConnectionFail)
+def syntax_exception(error):
+    return 'Falha ao acessar dados, tente mais tarde.', 500
 
 
 
