@@ -210,6 +210,18 @@ class Monster():
 		except NotFoundException: raise NotFoundException
 		except Exception:raise SyntaxException 
 
+	def get_by_type(self,type:str):
+		try:
+			db = DBCon.up()
+			crs = db.cursor(dictionary=True)
+			query = f"select * from monster where type = '{type}'"
+			crs.execute(query)
+			result = crs.fetchall()
+			db.close()
+			return result
+		except DBConnectionFail: raise DBConnectionFail
+		except: raise SyntaxError
+
 	def new(self,data:dict):
 		try:
 			if item_exist('monster', data["name"]): raise ItemAlreadyExistException
@@ -281,6 +293,30 @@ class Item():
 		except DBConnectionFail: DBConnectionFail
 		except NotFoundException: raise NotFoundException
 		except Exception:raise SyntaxException 
+
+	def get_by_category(self,category:str):
+		try:
+			db = DBCon.up()
+			crs = db.cursor(dictionary=True)
+			query = f"select * from item where category = '{category}'"
+			crs.execute(query)
+			result = crs.fetchall()
+			db.close()
+			return result
+		except DBConnectionFail: raise DBConnectionFail
+		except: raise SyntaxError
+
+	def get_by_type(self,type:str):
+		try:
+			db = DBCon.up()
+			crs = db.cursor(dictionary=True)
+			query = f"select * from item where type = '{type}'"
+			crs.execute(query)
+			result = crs.fetchall()
+			db.close()
+			return result
+		except DBConnectionFail: raise DBConnectionFail
+		except: raise SyntaxError
 
 	def new(self, data:dict):
 		try:

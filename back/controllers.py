@@ -29,32 +29,27 @@ def syntax_exception(error):
 
 
 ## CRUD -------------------------------------------- ACCOUNTS
-#READ
 @app.get("/account")
 def account_getAll():
     data = Account().getAll()
     return render_template("account.html", data=data)
 
-#CREATE
 @app.post("/account")
 def new_account():
     Account().new(request.json)
     return "Conta cadastrada com Sucesso.", 200
 
-#DELETE
 @app.delete("/account/<int:id>")
 def del_account(id):
     Account().drop(id)
     return "Usuario deletado."
 
-#UPDATE
 @app.put("/account")
 def update_account():
     Account().full_update(request.json)
     return "Dados Alterados com Sucesso.", 200
 
 ## CRUD -------------------------------------------- BUILDS
-#READ
 @app.get("/build")
 def build_getAll():
     builds = Build().get_all()
