@@ -1,7 +1,78 @@
-create schema dedb
-use dedb
+create schema dedb;
+use dedb;
 
+create table item(
+    id int primary key auto_increment,
+    category varchar(25) not null,
+    type varchar(25) not null,
+    name varchar(50) not null unique,
 
-create table weapon(id int primary key auto_increment, `type` varchar(20) not null, `name` varchar(50) not null unique, `atk` int not null, `atks` float(1) not null, `def` int not null default 0)
-create table armour(id int primary key auto_increment, `type` varchar(20) not null, `name` varchar(50) not null unique, `atk` int not null default 0, `hp` int not null, `def` int not null)
-create table trinket(id int primary key auto_increment, `type` varchar(20) not null, `name` varchar(50) not null unique, `atk` int not null default 0, `hp` int not null default 0, `def` int not null default 0)
+    atk int default 0,
+    def int default 0,
+    hp int default 0,
+
+    atks float default 0.0,
+    crit_chance int default 0,
+    crit_mult int default 0
+    );
+
+create table monster(
+    id int primary key auto_increment,
+    type varchar(25) not null,
+    name varchar(25) not null unique,
+
+    atk int default 0 not null,
+    def int default 0 not null,
+    hp int default 0 not null,
+
+    atks float default 0 not null,
+    crit_chance int default 0 not null,
+    crit_mult int default 0 not null
+    );
+
+create table account(
+    id int primary key auto_increment,
+    usuario varchar(50) not null unique,
+    email varchar(100) not null unique,
+    senha varchar(50) not null
+    );
+
+create table build(
+    id int primary key auto_increment,
+    id_account int not null,
+    name varchar(25) not null,
+
+    helmet int default null,
+    body int default null,
+    gloves int default null,
+    boots int default null,
+    main_hand int default null,
+    off_hand int default null,
+    amulet int default null,
+    ring int default null,
+    belt int default null,
+
+    constraint FK_account foreign key(id_account) references account(id) on delete cascade,
+
+    constraint FK_helmet foreign key(helmet) references item(id) on delete set null,
+    constraint FK_body foreign key(body) references item(id) on delete set null,
+    constraint FK_gloves foreign key(gloves) references item(id) on delete set null,
+    constraint FK_boots foreign key(boots) references item(id) on delete set null,
+    constraint FK_MH foreign key(main_hand) references item(id) on delete set null,
+    constraint FK_OH foreign key(off_hand) references item(id) on delete set null,
+    constraint FK_amulet foreign key(amulet) references item(id) on delete set null,
+    constraint FK_ring foreign key(ring) references item(id) on delete set null,
+    constraint FK_belt foreign key(belt) references item(id) on delete set null
+    );
+
+insert into item(category,type,name,atk,atks,crit_chance,crit_mult) values('weapon','axe','solar axe',20,1.5,10,20),('weapon','2h_sword','eternal',100,0.4,30,50);
+insert into item(category,type,name,def,hp) values('armour','helmet','viking helmet',100,70),('armour','body','steel skin',500,100),('armour','gloves','rawhide gloves',50,25),('armour','boots','rawhide boots',25,40);
+insert into item(category,type,name,crit_chance,crit_mult,atk) values('trinket','amulet','golden amulet',20,30,10),('trinket','ring','saphire ring',10,20,15);
+insert into item(category,type,name,hp,def,atk) values('trinket','belt','iron belt',30,100,20);
+
+insert into monster(type,name,atk,def,hp,atks,crit_chance,crit_mult) values('orc','orc shaman',500,250,300,1.5,20,200),('animal','rat',10,0,50,1,0,200);
+
+insert into account(usuario,email,senha) values('user_test_1','u@u','uuuuu'),('user_test_2','e@e','eeeee');
+
+insert into build(id_account,name) values(1,'build vazia');
+insert into build(id_account,name,helmet,body,gloves,boots,main_hand,off_hand,amulet,ring,belt) values(2,'build_test1',3,4,5,6,1,1,7,8,9);
