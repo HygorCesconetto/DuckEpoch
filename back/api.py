@@ -3,11 +3,6 @@ from flask import jsonify, request
 from db import Account, Build, Monster, Item
 from db import SyntaxException , NotFoundException, ItemAlreadyExistException,DBConnectionFail
 
-
-@app.get("/")
-def home():
-    return "HOME"
-
 ##-------------------------------------------------EXCEPTIONS
 @app.errorhandler(ItemAlreadyExistException)
 def syntax_exception(error):
@@ -24,8 +19,6 @@ def syntax_exception(error):
 @app.errorhandler(DBConnectionFail)
 def syntax_exception(error):
     return 'Falha ao acessar dados, tente mais tarde.', 500
-
-
 
 
 ##-------------------------------------------------API
@@ -81,6 +74,16 @@ def api_item_get():
     data = Item().get_all()
     return jsonify(data)
 
+@app.get("/itens/<category>")
+def api_item_get_category(category):
+    data = Item().get_by_category(category)
+    return jsonify(data)
+
+@app.get("/itens/<type>")
+def api_item_get_type(type):
+    data = Item().get_by_type(type)
+    return jsonify(data)
+
 @app.post("/itens")
 def api_item_new():
     Item().new(request.json)
@@ -101,6 +104,11 @@ def api_item_update():
 @app.get("/monsters")
 def api_monster_get():
     data = Monster().get_all()
+    return jsonify(data)
+
+@app.get("/monsters/<type>")
+def api_monster_get_type(type):
+    data = Monster().get_by_type(type)
     return jsonify(data)
 
 @app.post("/monsters")
