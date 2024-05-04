@@ -1,6 +1,7 @@
 from app import app
-from flask import jsonify, request , render_template, redirect, url_for
-from db import Weapom,Armour,Trinket,Account,Build, SyntaxException ,NotFoundException, ItemAlreadyExistException,DBConnectionFail
+from flask import jsonify, request
+from db import Account, Build, Monster, Item
+from db import SyntaxException , NotFoundException, ItemAlreadyExistException,DBConnectionFail
 
 
 @app.get("/")
@@ -27,66 +28,92 @@ def syntax_exception(error):
 
 
 
+##-------------------------------------------------API
+##### ACCOUNT
 
-## CRUD -------------------------------------------- ACCOUNTS
 @app.get("/account")
-def account_getAll():
-    data = Account().getAll()
-    return render_template("account.html", data=data)
+def api_account_get():
+    data = Account().get_all()
+    return jsonify(data)
 
 @app.post("/account")
-def new_account():
+def api_account_new():
     Account().new(request.json)
     return "Conta cadastrada com Sucesso.", 200
 
 @app.delete("/account/<int:id>")
-def del_account(id):
+def api_account_drop(id):
     Account().drop(id)
     return "Usuario deletado."
 
-@app.put("/account")
-def update_account():
-    Account().full_update(request.json)
+@app.patch("/account")
+def api_account_update():
+    Account().update(request.json)
     return "Dados Alterados com Sucesso.", 200
 
-## CRUD -------------------------------------------- BUILDS
+
+#### BUILD
+
 @app.get("/build")
-def build_getAll():
-    builds = Build().get_all()
-    itens = {
-        "helmet":Armour().getByProp("helmet"),
-        "body":Armour().getByProp("body"),
-        "gloves":Armour().getByProp("gloves"),
-        "boots":Armour().getByProp("boots"),
-        "main_hand":Weapom().getAll(),
-        "off_hand":Weapom().getAll(),
-        "amulet":Trinket().getByProp("amulet"),
-        "ring":Trinket().getByProp("ring"),
-        "belt":Trinket().getByProp("belt")
-             }
-    return render_template("build.html", builds = builds, itens = itens)
-
-@app.get("/build_api")
-def build_getApi():
-    build = Build().get_all()
-    return jsonify(build)
-
-@app.route("/build_api/<int:id>", methods=["GET"])
-def build_getApi_Id(id):
-    build= Build().get_byID(id)
-    return jsonify(build)
-
-@app.delete("/build/<int:id>")
-def delete_build(id):
-    Build().drop(id)
-    return "Build deletada.", 200
+def api_build_get():
+    data = Build().get_all()
+    return jsonify(data)
 
 @app.post("/build")
-def new_build():
+def api_build_new():
     Build().new(request.json)
     return "Build cadastrada.", 200
 
-@app.put("/build")
-def update_build():
-    Build().full_update(request.json)
+@app.delete("/build/<int:id>")
+def api_build_drop(id):
+    Build().drop(id)
+    return "Build deletada.", 200
+
+@app.patch("/build")
+def api_build_update():
+    Build().update(request.json)
     return "Build alterada.", 200
+
+#### Item
+
+@app.get("/itens")
+def api_item_get():
+    data = Item().get_all()
+    return jsonify(data)
+
+@app.post("/itens")
+def api_item_new():
+    Item().new(request.json)
+    return "Item cadastrado.", 200
+
+@app.delete("/itens/<int:id>")
+def api_item_drop(id):
+    Item().drop(id)
+    return "Item deletado.", 200
+
+@app.patch("/itens")
+def api_item_update():
+    Item().update(request.json)
+    return "Item alterado.", 200
+
+#### Monster
+
+@app.get("/monsters")
+def api_monster_get():
+    data = Monster().get_all()
+    return jsonify(data)
+
+@app.post("/monsters")
+def api_monster_new():
+    Monster().new(request.json)
+    return "Monstro cadastrado.", 200
+
+@app.delete("/monsters/<int:id>")
+def api_monster_drop(id):
+    Monster().drop(id)
+    return "Monstro deletado.", 200
+
+@app.patch("/monsters")
+def api_monster_update():
+    Monster().update(request.json)
+    return "Monstro alterado.", 200

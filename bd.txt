@@ -72,7 +72,7 @@ insert into item(category,type,name,hp,def,atk) values('trinket','belt','iron be
 
 insert into monster(type,name,atk,def,hp,atks,crit_chance,crit_mult) values('orc','orc shaman',500,250,300,1.5,20,200),('animal','rat',10,0,50,1,0,200);
 
-insert into account(usuario,email,senha) values('user_test_1','u@u','uuuuu'),('user_test_2','e@e','eeeee');
+insert into account(name,email,pword) values('user_test_1','u@u','uuuuu'),('user_test_2','e@e','eeeee');
 
 insert into build(id_account,name) values(1,'build vazia');
 insert into build(id_account,name,helmet,body,gloves,boots,main_hand,off_hand,amulet,ring,belt) values(2,'build_test1',3,4,5,6,1,1,7,8,9);

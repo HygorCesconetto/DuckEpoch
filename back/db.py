@@ -51,11 +51,12 @@ class Account():
 			db = DBCon.up()
 
 			crs = db.cursor(dictionary=True)
-			query="""SELECT id,usuario,email FROM account;"""
+			query="""SELECT id,name,email FROM account;"""
 			crs.execute(query)
 			results = crs.fetchall()
 			crs.close()
 			return results
+		
 		except: raise DBConnectionFail
 
 	def get_by_id(self, id:int):
@@ -63,7 +64,7 @@ class Account():
 			db = DBCon.up()
 
 			crs = db.cursor(dictionary=True)
-			crs.execute(f"""SELECT id,usuario,email FROM account where `id` = {id};""")
+			crs.execute(f"""SELECT id,name,email FROM account where `id` = {id};""")
 			result = crs.fetchone()
 			crs.close()
 
@@ -99,7 +100,6 @@ class Account():
 	def update(self, data:dict):
 		try:
 			self.get_by_id(data["id"])
-
 			db = DBCon.up()
 			crs = db.cursor()
 			crs.execute(update_query('account',data))
