@@ -11,7 +11,7 @@ def handle_preflight():
         res.headers['X-Content-Type-Options'] = '*'
         return res
 
-from back.api import *
+from api import *
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
