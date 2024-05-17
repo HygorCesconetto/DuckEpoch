@@ -47,22 +47,22 @@ def api_account_update():
 
 #### BUILD
 
-@app.get("/build")
+@app.get("/builds")
 def api_build_get():
     data = Build().get_all()
     return jsonify(data)
 
-@app.post("/build")
+@app.post("/builds")
 def api_build_new():
     Build().new(request.json)
     return "Build cadastrada.", 200
 
-@app.delete("/build/<int:id>")
+@app.delete("/builds/<int:id>")
 def api_build_drop(id):
     Build().drop(id)
     return "Build deletada.", 200
 
-@app.patch("/build")
+@app.patch("/builds")
 def api_build_update():
     Build().update(request.json)
     return "Build alterada.", 200
