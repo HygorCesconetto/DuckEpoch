@@ -1,29 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './DataTable.css';
 import axios from 'axios';
-
-
+import { BdModels } from '../Models/BdModels';
 
 const API_URL = "http://localhost:5000/"
 
 
-const DataTable = (props) => {
-  const[Response, setResponse]= useState({})
+class DataTable extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {Data: []};
+  }
+  
 
+  render(){
+    return (
+      <div className='DataTable'>
+      </div>
+    )
+  }
 
-
-  const DataFetch = () =>(
-    axios.get(`${API_URL}${props.Type}`).then(res=>{
-      setResponse(res.data)
-      console.log(Response)
-    })
-  );
-
-  return(<div className="DataTable">
-    <button onClick={DataFetch}>DATA</button>
-  </div>
-  );
-};
-
-
+}
 export default DataTable;

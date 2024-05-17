@@ -24,22 +24,22 @@ def syntax_exception(error):
 ##-------------------------------------------------API
 ##### ACCOUNT
 
-@app.get("/account")
+@app.get("/accounts")
 def api_account_get():
     data = Account().get_all()
     return jsonify(data)
 
-@app.post("/account")
+@app.post("/accounts")
 def api_account_new():
     Account().new(request.json)
     return "Conta cadastrada com Sucesso.", 200
 
-@app.delete("/account/<int:id>")
+@app.delete("/accounts/<int:id>")
 def api_account_drop(id):
     Account().drop(id)
     return "Usuario deletado."
 
-@app.patch("/account")
+@app.patch("/accounts")
 def api_account_update():
     Account().update(request.json)
     return "Dados Alterados com Sucesso.", 200
