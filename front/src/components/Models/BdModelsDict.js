@@ -1,4 +1,4 @@
-export const BdModels = {
+export const BdModelsDict = {
     itens : {
         id:"number",
         category:"text",
