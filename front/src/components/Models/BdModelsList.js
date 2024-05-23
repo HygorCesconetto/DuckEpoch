@@ -1,4 +1,4 @@
-export const BdModels = {
+export const BdModelsList = {
     itens:[
         "id",
         "category",
