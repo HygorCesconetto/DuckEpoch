@@ -2,15 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import CrudForm from './components/CrudForm/CrudForm';
-import DataTable2 from './components/DataTable/DataTable2';
+import DataTable from './components/DataTable/DataTable';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DataTable2 Type="accounts"/>
-    <CrudForm Type="accounts" />
+    <DataTable Type="builds"/>
   </React.StrictMode>
 );
 

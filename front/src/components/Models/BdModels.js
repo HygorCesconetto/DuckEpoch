@@ -11,7 +11,7 @@ export const BdModels = {
         "crit_chance",
         "crit_mult"
     ],
-    buils:[
+    builds:[
         "id",
         "id_account",
         "name",
@@ -28,8 +28,7 @@ export const BdModels = {
     accounts:[
         "id",
         "name",
-        "email",
-        "pword"
+        "email"
     ],
     monsters:[
         "id",
