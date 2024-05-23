@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import DataTable from './components/DataTable/DataTable';
+import BasicInputForm from './components/Forms/BasicInputs';
+import { BdModelsList } from './components/Models/BdModelsList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DataTable Type="builds"/>
+    <DataTable Type="itens"/>
+    <BasicInputForm Type="itens" InputList={BdModelsList.itens}/>
   </React.StrictMode>
 );
 

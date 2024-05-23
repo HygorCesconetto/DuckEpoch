@@ -1,4 +1,7 @@
 import { useState } from "react"
+import ButtonPanel from "../ButtonPanel/ButtonPanel";
+import { BdModels } from "../Models/BdModelsDict";
+
 
 const BasicInputForm = (props)=>{
     const[InputData, setInputData]= useState({})
@@ -16,12 +19,12 @@ const BasicInputForm = (props)=>{
 
     return(
         <div className="BasicInputForm">
-            {props.InputList.map((input,index)=>(
-                <div key={index} className="input-container">
-                    <label htmlFor={input}>{input}</label>
-                    <input type="text" id={input} name={input} onChange={inputChangeHandler}/>
-                </div>
-            ))}
+            <div className="form-container">
+            {-----------------todo---------}
+            </div>
+            <ButtonPanel Type ={props.Type} Data={InputData}/>
         </div>
     )
 }
+
+export default BasicInputForm

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import axios from 'axios';
 
 const ButtonPanel = (props) =>{
@@ -31,3 +30,5 @@ const ButtonPanel = (props) =>{
         </div>
     )
 }
+
+export default ButtonPanel

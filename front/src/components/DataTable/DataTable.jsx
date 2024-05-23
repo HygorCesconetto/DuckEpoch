@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BdModels } from "../Models/BdModels";
+import { BdModelsList } from "../Models/BdModelsList";
 
 
 
@@ -31,7 +31,7 @@ const DataTable = (props) =>{
             <table>
                 <thead>
                     <tr>
-                        {BdModels[props.Type].map((title,index)=>{
+                        {BdModelsList[props.Type].map((title,index)=>{
                             return <th key={index}>{title}</th>
                         })}
                     </tr>
@@ -39,7 +39,7 @@ const DataTable = (props) =>{
                 <tbody>
                     {Data.map((dict,index)=>(
                         <tr key={index}>
-                            {BdModels[props.Type].map((data, index2)=>(
+                            {BdModelsList[props.Type].map((data, index2)=>(
                                 <td key={index2}>{dict[data]}</td>
                             ))}
                         </tr>
