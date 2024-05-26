@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ButtonPanel = (props) =>{
+const CUD = (props) =>{
 
     const addButton = (event) =>{
         event.preventDefault();
@@ -31,4 +31,4 @@ const ButtonPanel = (props) =>{
     )
 }
 
-export default ButtonPanel
+export default CUD

@@ -1,6 +1,5 @@
 import { useState } from "react"
 import ButtonPanel from "../ButtonPanel/ButtonPanel";
-import { BdModels } from "../Models/BdModelsDict";
 
 
 const BasicInputForm = (props)=>{
@@ -20,7 +19,7 @@ const BasicInputForm = (props)=>{
     return(
         <div className="BasicInputForm">
             <div className="form-container">
-            {-----------------todo---------}
+            {/* fazer blocos de input com BDModelsDict */}
             </div>
             <ButtonPanel Type ={props.Type} Data={InputData}/>
         </div>
