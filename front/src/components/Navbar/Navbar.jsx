@@ -12,7 +12,6 @@ const Navbar = ({Router}) =>{
             <button onClick={routeChangeHandler} value={"itens"}>Itens</button>
             <button onClick={routeChangeHandler} value={"monsters"}>Monsters</button>
             <button onClick={routeChangeHandler} value={"calculator"}>DPS Calculator</button>
-            <button>Login</button>
         </div>
     )
 }

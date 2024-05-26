@@ -1,31 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BdModelsList } from "../Models/BdModelsList";
 
 
-
-
-
 const DataTable = (props) =>{
-    const[Data, setData] = useState([]);
-    const[IsLoading, setIsLoading] = useState(true);
-
-    const fetchApi = () =>{
-        fetch(`http://localhost:5000/${props.Type}`)
-            .then(response => response.json())
-            .then(data => setData(data))
-            .catch(error => console.log(error))
-            .finally(()=>setIsLoading(false))
-    }
-    
     useEffect(()=>{
-        fetchApi();
-    },[])
+    
+    },[props.Data])
 
 
-
-
-
-    if (!IsLoading){
+    if (!props.Load){
         return (
         <div className="DataTable">
             <table>
@@ -37,7 +20,7 @@ const DataTable = (props) =>{
                     </tr>
                 </thead>
                 <tbody>
-                    {Data.map((dict,index)=>(
+                    {props.Data.map((dict,index)=>(
                         <tr key={index}>
                             {BdModelsList[props.Type].map((data, index2)=>(
                                 <td key={index2}>{dict[data]}</td>
@@ -50,7 +33,7 @@ const DataTable = (props) =>{
         )
     }
     else {
-        return(<div>Loading...</div>)
+        return(<div></div>)
     }  
 
 }
