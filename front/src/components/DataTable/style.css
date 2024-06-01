@@ -1,0 +1,28 @@
+.datatable{
+    width: 60%;
+}
+table,th,td{
+    border-collapse: collapse;
+    border-bottom:1px solid black;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+table{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    margin: auto;
+}
+thead{
+    background-color: rgb(102, 102, 102);
+    color: rgb(247, 205, 127);
+}
+th{
+    font-weight: 400;
+    font-size: 20px;
+    width: 80px;
+}
+td{
+    font-size: 14px;
+    font-style: oblique;
+}

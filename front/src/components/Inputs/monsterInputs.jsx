@@ -11,7 +11,7 @@ export default function MonsterImputs(props){
     
     if(props.InputType==='update'){
         return(
-            <div className="monster-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="id">ID</label>
                     <input id="id" name="id" type="number" onChange={inputChangeHandler} ></input>
@@ -53,7 +53,7 @@ export default function MonsterImputs(props){
     }
     else if(props.InputType==="add"){
         return(
-            <div className="monster-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="type">Type</label>
                     <input id="type" name="type" type="text" onChange={inputChangeHandler} ></input>
@@ -91,7 +91,7 @@ export default function MonsterImputs(props){
     }
     else if(props.InputType==="delete"){
         return(
-            <div className="monster-input">
+            <div className="inputlist">
                 <label htmlFor="id">ID</label>
                 <input id="id" name="id" type="number" onChange={inputChangeHandler}></input>
             </div>

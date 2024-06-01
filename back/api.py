@@ -2,6 +2,8 @@ from app import app
 from flask import jsonify, request
 from db import Account, Build, Monster, Item
 from db import SyntaxException , NotFoundException, ItemAlreadyExistException,DBConnectionFail
+import random
+from numpy import ceil
 
 ##-------------------------------------------------EXCEPTIONS
 @app.errorhandler(ItemAlreadyExistException)
@@ -125,3 +127,42 @@ def api_monster_drop(id):
 def api_monster_update():
     Monster().update(request.json)
     return "Monstro alterado.", 200
+
+
+@app.get("/dps/<int:b>/<int:m>")
+def dps_calc(b,m):
+
+    b2 = Build().get_by_id(b)
+    m2 = Monster().get_by_id(m)
+    build_itens=[]
+    
+    for key in b2.keys():
+        if key not in ["id","id_account","name"]:
+            item_dict = Item().get_by_id(b2[key])
+            item_dict.pop("id")
+            item_dict.pop("name")
+            item_dict.pop("type")
+            item_dict.pop("category")
+            item_dict.pop("def")
+            item_dict.pop("hp")
+            build_itens.append(item_dict)
+    ###
+    stats={'atk':0,'atks':0,'crit_chance':0,'crit_mult':0}
+    for item in build_itens:
+        for status in item.keys():
+            stats[status]+=item[status]
+        stats["atks"]= round(stats["atks"],2)
+    stats["crit_chance"]=stats["crit_chance"]/1000
+    stats["crit_mult"]/=100
+
+    dps=0
+    for _ in range(1000000):
+        if random.random() <= stats["crit_chance"]: dps+= stats["atk"]*stats["crit_mult"]
+        else: dps+=stats["atk"]
+    dps/=1000000
+    dps*=stats["atks"]
+    
+    dps_on_monster= dps*m2["def"]/1000
+    time_tokill= ceil(m2["hp"]/dps_on_monster)
+    res = {"build_id":b,"monster_id":m,"raw_dps":int(dps),"dps_on_monster":int(dps_on_monster),"time_to_kill":int(time_tokill)}
+    return jsonify(res)

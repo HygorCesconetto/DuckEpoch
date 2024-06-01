@@ -11,7 +11,7 @@ export default function BuildsInputs(props){
     
     if(props.InputType==='update'){
         return(
-            <div className="build-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="id">ID</label>
                     <input id="id" name="id" type="number" onChange={inputChangeHandler} ></input>
@@ -65,7 +65,7 @@ export default function BuildsInputs(props){
     }
     else if(props.InputType==="add"){
         return(
-            <div className="build-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="id_account">ID_Account</label>
                     <input id="id_account" name="id_account" type="number" onChange={inputChangeHandler} ></input>

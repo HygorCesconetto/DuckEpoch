@@ -3,6 +3,7 @@ import AccountInputs from "../Inputs/accountInputs";
 import ItemInputs from "../Inputs/itensInputs";
 import BuildsInputs from "../Inputs/buildsInputs";
 import MonsterImputs from "../Inputs/monsterInputs";
+import './style.css';
 
 const BaseCrud = (props) => {
   const [DataCRUD, setDataCRUD] = useState({});
@@ -46,9 +47,14 @@ const BaseCrud = (props) => {
     };
     const delete_options = { method: "DELETE" };
 
-    if (inputType === "add")          {fetch(`${baseurl}${props.Type}`, add_options).finally(()=>{window.location.reload();})}
-    else if (inputType === "update")  {fetch(`${baseurl}${props.Type}`, update_options).finally(()=>{window.location.reload();})}
-    else if (inputType === "delete")  {fetch(`${baseurl}${props.Type}/${DataCRUD["id"]}`, delete_options).finally(()=>{window.location.reload();})}
+    if (inputType === "add")          {fetch(`${baseurl}${props.Type}`, add_options)
+    .finally(()=>{window.location.reload();})}
+    
+    else if (inputType === "update")  {fetch(`${baseurl}${props.Type}`, update_options)
+    .finally(()=>{window.location.reload();})}
+    
+    else if (inputType === "delete")  {fetch(`${baseurl}${props.Type}/${DataCRUD["id"]}`, delete_options)
+    .finally(()=>{window.location.reload();})}
   }
 
   function discardHandler(){
@@ -66,8 +72,8 @@ const BaseCrud = (props) => {
   }
 
   return (
-    <div>
-      <form id="form">
+    <div className="form-c">
+      <form className="form" id="form">
         {renderDict[props.Type]}
       </form>
 

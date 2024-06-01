@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { BdModelsList } from "../Models/BdModelsList";
+import './style.css';
+import { BdModelsList } from "../../models/BdModelsList";
 
 
 const DataTable = (props) =>{
@@ -10,7 +11,7 @@ const DataTable = (props) =>{
 
     if (!props.Load){
         return (
-        <div className="DataTable">
+        <div className="datatable">
             <table>
                 <thead>
                     <tr>

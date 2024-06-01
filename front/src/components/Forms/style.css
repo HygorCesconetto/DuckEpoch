@@ -1,0 +1,36 @@
+.form-c{
+    padding: 50px;
+}
+.inputlist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-c{
+    display: flex;
+    height: 25px;
+    width: 270px;
+    padding: 3px;
+    align-items: center;
+    justify-content: space-between;
+    
+    input, select{
+        width: 150px;
+        border:none;
+        height: 20px;
+        border-bottom: 1px solid black;
+        text-align: center;
+    }
+}
+
+.buttons-c{
+
+    button{
+        margin: 20px;
+        border: none;
+        background-color: black;
+        color: rgb(247, 205, 127);
+        width: 100px;
+        height: 25px;
+    }
+}

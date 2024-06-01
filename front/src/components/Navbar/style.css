@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: black;
+    
+    button{
+        width: 200px;
+        height: 30px;
+        border: none;
+        cursor: pointer;
+        background-color: black;
+        color: rgb(247, 205, 127);
+    }
+    button:hover{
+        background-color: rgb(59, 59, 59);
+    }
+}

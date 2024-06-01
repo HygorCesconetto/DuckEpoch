@@ -1,3 +1,5 @@
+import './style.css';
+
 const Navbar = ({Router}) =>{
 
     const routeChangeHandler =(e) =>{
@@ -6,7 +8,7 @@ const Navbar = ({Router}) =>{
     }   
 
     return(
-        <div className="Navbar">
+        <div className="header">
             <button onClick={routeChangeHandler} value={"accounts"}>Accounts</button>
             <button onClick={routeChangeHandler} value={"builds"}>Builds</button>
             <button onClick={routeChangeHandler} value={"itens"}>Itens</button>

@@ -11,7 +11,7 @@ export default function AccountInputs(props){
 
     if(props.InputType==='add'){
         return(
-            <div id="add" className="account-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="name">Nome</label>
                     <input id="name" name="name" type="text" onChange={inputChangeHandler} ></input>
@@ -29,7 +29,7 @@ export default function AccountInputs(props){
     }
     else if(props.InputType==="update"){
         return(
-            <div id="add" className="account-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="id">ID</label>
                     <input id="id" name="id" type="number" onChange={inputChangeHandler}></input>
@@ -51,7 +51,7 @@ export default function AccountInputs(props){
     }
     else if(props.InputType==="delete"){
         return(
-            <div id="add" className="account-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="id">ID</label>
                     <input id="id" name="id" type="number" onChange={inputChangeHandler}></input>

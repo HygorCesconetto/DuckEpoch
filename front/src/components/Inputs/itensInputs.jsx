@@ -11,13 +11,13 @@ export default function ItemInputs(props){
     
     if(props.InputType==='update'){
         return(
-            <div className="itens-input">
+            <div className="inputlist">
                 <div className="input-c">
                     <label htmlFor="id">ID</label>
                     <input id="id" name="id" type="number" onChange={inputChangeHandler} ></input>
                 </div>
                 <div className="input-c">
-                    <label htmlFor="category"></label>
+                    <label htmlFor="category">Category</label>
                     <select id="category" name="category" onChange={inputChangeHandler}>
                         <option value="trinket">Trinket</option>
                         <option value="weapon">Weapon</option>
@@ -62,9 +62,9 @@ export default function ItemInputs(props){
     }
     else if(props.InputType==="add"){
         return(
-            <div className="itens-input">
+            <div className="inputlist">
                 <div className="input-c">
-                    <label htmlFor="category"></label>
+                    <label htmlFor="category">Category</label>
                     <select id="category" name="category" onChange={inputChangeHandler}>
                         <option value="trinket">Trinket</option>
                         <option value="weapon">Weapon</option>
@@ -109,7 +109,7 @@ export default function ItemInputs(props){
     }
     else if(props.InputType==="delete"){
         return(
-            <div className="itens-input">
+            <div className="inputlist">
                 <label htmlFor="id">ID</label>
                 <input id="id" name="id" type="number" onChange={inputChangeHandler}></input>
             </div>
