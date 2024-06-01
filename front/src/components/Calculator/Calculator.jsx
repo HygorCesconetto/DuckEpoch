@@ -9,8 +9,13 @@ const Calculator = () =>{
         const id_b = document.getElementById("build").value
         const id_m = document.getElementById("monster").value
         fetch(`http://localhost:5000/dps/${id_b}/${id_m}`)
-            .then(resp=>resp.json())
-            .then(data=>{setData(data);setIsLoading(false)})
+            .then(resp=>{
+                console.log(resp);
+                if(resp.ok){
+                    return(resp.json()).then(data=>{setData(data);setIsLoading(false)})
+                }
+                else{setIsLoading(true);setData({});alert("Erro: id's inválidos.");}
+            })
         document.getElementById("build").value = ""
         document.getElementById("monster").value = ""
     }
