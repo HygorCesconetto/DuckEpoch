@@ -36,7 +36,7 @@ const Calculator = () =>{
             <div className="result">
                 {isLoading?"":<div><p>DPS: {Data["raw_dps"]}</p>
                 <p>Mitgated DPS: {Data["dps_on_monster"]}</p>
-                <p>Time to kill: {Data["time_to_kill"]}</p></div>}
+                <p>Time to kill: {Data["time_to_kill"]}s</p></div>}
             </div>
         </div>
     )
